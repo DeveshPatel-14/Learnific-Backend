@@ -9,5 +9,11 @@
       "use": "@vercel/static"
     }
   ],
-    "rewrites": [{ "source": "/(.*)", "destination": "server.js" }]
+    "rewrites": [{ "source": "/(.*)", "destination": "server.js" }],
+    "crons": [
+      {
+        "path": "/server",
+        "schedule": "0 0 0 5 * *"
+      }
+    ]
 }
