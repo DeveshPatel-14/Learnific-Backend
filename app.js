@@ -38,6 +38,23 @@ app.use("/api/v1", other);
 
 export default app;
 
+const __dirname = path.resolve();
+app.use(express.static(path.resolve(__dirname, 'build')));
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+const root = path.join(__dirname,'build')
+app.use(express.static(root))
+
+app.get('*', (req, res) =>
+  res.sendFile(path.resolve('build', 'index.html'))
+);
+
+
 app.get("/", (req, res) =>
   res.send(
     `<h1>Site is Working. click <a href=${process.env.FRONTEND_URL}>here</a> to visit frontend.</h1>`
