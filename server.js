@@ -8,6 +8,7 @@ import cors from "cors";
 import express from "express";
 import { config } from "dotenv";
 import cookieParser from "cookie-parser";
+import ErrorMiddleware from "./middlewares/Error.js";
 
 // Importing & Using Routes
 import course from "./routes/courseRoutes.js";
