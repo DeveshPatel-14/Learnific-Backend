@@ -37,7 +37,7 @@ const __dirname = path.resolve();
 app.use(express.static(path.resolve(__dirname, 'build')));
 app.use(
   cors({
-    origin: "*",
+    origin: process.env.FRONTEND_URL,
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
