@@ -154,7 +154,7 @@ export const forgetPassword = catchAsyncError(async (req, res, next) => {
   const message = `Click on the link to reset your password. ${url}. If you have not request then please ignore.`;
 
   // Send token via email
-  await sendEmail(user.email, "CourseBundler Reset Password", message);
+  await sendEmail(user.email, "Learnific Reset Password", message);
 
   res.status(200).json({
     success: true,
