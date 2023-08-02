@@ -6,6 +6,7 @@ import nodeCron from "node-cron";
 import { Stats } from "./models/Stats.js";
 import path from 'path';
 import express from "express";
+import cors from "cors";
 
 
 connectDB();
