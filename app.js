@@ -3,22 +3,16 @@ import { config } from "dotenv";
 import ErrorMiddleware from "./middlewares/Error.js";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import path from 'path'
 
 config({
   path: "./config/config.env",
 });
 const app = express();
 
-const __dirname = path.resolve();
-
-
-
 
 // Using Middlewares
 app.use(express.json());
 
-app.use(express.static(path.resolve(__dirname, 'build')));
 
 
 app.use(
@@ -27,20 +21,7 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(
-  cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-  })
-);
 
-const root = path.join(__dirname,'build')
-app.use(express.static(root))
-
-app.get('*', (req, res) =>
-  res.sendFile(path.resolve('build', 'index.html'))
-);
 
 // Importing & Using Routes
 import course from "./routes/courseRoutes.js";

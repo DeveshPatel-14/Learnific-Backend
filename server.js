@@ -4,7 +4,28 @@ import cloudinary from "cloudinary";
 import RazorPay from "razorpay";
 import nodeCron from "node-cron";
 import { Stats } from "./models/Stats.js";
+import path from 'path';
+
 connectDB();
+
+
+const __dirname = path.resolve();
+app.use(express.static(path.resolve(__dirname, 'build')));
+
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
+
+const root = path.join(__dirname,'build')
+app.use(express.static(root))
+
+app.get('*', (req, res) =>
+  res.sendFile(path.resolve('build', 'index.html'))
+);
 
 cloudinary.v2.config({
   cloud_name: process.env.CLOUDINARY_CLIENT_NAME,
